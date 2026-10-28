@@ -1,0 +1,34 @@
+# See https://pre-commit.com/hooks.html for more hooks
+# Generated files keep the generator's own layout: the plugin permission
+# reference and schema are rewritten by the plugins' build scripts on every
+# build, so reformatting them here only churns against it.
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-illegal-windows-names
+      - id: check-symlinks
+      - id: destroyed-symlinks
+      - id: fix-byte-order-marker
+      - id: requirements-txt-fixer
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+
+  - repo: https://github.com/bneijt/deno-pre-commit
+    rev: 2.7.9
+    hooks:
+      - id: deno-fmt
+        exclude: ^README\.md$
+        exclude_types: ["javascript", "jsx", "ts", "tsx", "json"]
+
+  - repo: local
+    hooks:
+      - id: xidlc-fmt
+        name: xidlc-fmt
+        language: system
+        types_or: [idl]
+        entry: xidlc fmt -i
